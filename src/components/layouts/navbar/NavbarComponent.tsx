@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { navbarItems } from "./menu";
 
 export default function NavbarComponent() {
   const pathname = usePathname();
@@ -21,41 +22,26 @@ export default function NavbarComponent() {
           <Image width={40} className="mr-4 rounded-full" height={40} src={"/assets/pic.jpg"} alt={""} />
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarItem>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {
+          navbarItems.map((item,index)=>(
+            <NavbarItem>
             <Link
-              color="foreground"
-              href="/"
-              className={`${pathname === "/" && "font-bold text-blue-800"}`}
-            >
-              Home
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link
-              className={`${
-                pathname === "/about-us" && "font-bold text-blue-800"
-              }`}
-              href={"./about-us"}
-            >
-              About
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link
-              className={`${
-                pathname === "/product" && "font-bold text-blue-800"
-              }`}
-              color="foreground"
-              href="/product"
-            >
-              Products
-            </Link>
-          </NavbarItem>
+            key={index}
+            color="foreground"
+            href={item.path}
+            className={`${pathname === item.path && "font-bold text-blue-800"}`}
+          >
+            {item.title}
+          </Link>
+        </NavbarItem>
+
+          ))
+        }
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
-            <Link href="#">Login</Link>
+            <Link href="/login">Login</Link>
           </NavbarItem>
           <NavbarItem>
             <Button as={Link} color="primary" href="/dashboard" variant="flat">

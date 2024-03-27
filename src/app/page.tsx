@@ -2,6 +2,7 @@ import CardComponent from "@/components/cards/CardComponent";
 import { ProductType } from "@/types/product";
 import { Suspense } from "react";
 import LoadingComponent from "./loading";
+// import LoadingComponent from "./loading";
 
 async function fetchProduct() {
   const product = await fetch("https://dummyjson.com/products?limit=100", {

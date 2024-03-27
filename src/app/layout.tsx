@@ -2,9 +2,28 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NextUILayout from "./NextUIProvider";
-import NavbarComponent from "@/components/layouts/NavbarComponent";
+import NavbarComponent from "@/components/layouts/navbar/NavbarComponent";
 import { Suspense } from "react";
 import LoadingComponent from "./loading";
+import Error from "./error";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+// import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+
+
+
+// import { metadata } from './layout';
+
+
+// not yet complete such as font and metadta 
+
+export const metadata:Metadata = {
+  title:{
+    template: "%s -MyShop",
+    default:"MyShop"
+  },
+   description: "this is description shop "
+  
+}
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +42,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className}    >
         <NextUILayout>
           <NavbarComponent />
-         {children}
+            
+            {/* waiting data */}
+           <Suspense fallback={<LoadingComponent/>} >
+
+            <ErrorBoundary errorComponent={Error}>
+            {children}
+            </ErrorBoundary>
+            
+          </Suspense>
         </NextUILayout>
       </body>
     </html>

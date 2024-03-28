@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import React from 'react'
 
 export const metadata: Metadata = {
@@ -9,6 +10,7 @@ const page = () => {
   return (
     <div>
       About Page
+      This is homepages
     </div>
   )
 }

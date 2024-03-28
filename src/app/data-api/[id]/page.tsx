@@ -1,6 +1,8 @@
 import { ProductType } from '@/types/product';
 import React from 'react'
 import { Metadata } from 'next';
+import { title } from 'process';
+import { describe } from 'node:test';
 
 type paragramType =  {
     params:{
@@ -13,17 +15,17 @@ async function getDataById(id:number){
     return res;
 }
 
-export async function generateMetadata({params}: any) {
-    const id = params.id
-    const product = await getDataById(id);
-    return {
-      title: product?.title,
-      describe: product.description,
-      openGraph: {
-        images: product.image,
-      }
-    }
-  }
+// export async function generateMetadata({params}: any) {
+//     const id = params.id
+//     const product = await getDataById(id);
+//     return {
+//       title: product?.title,
+//       describe: product.description,
+//       openGraph: {
+//         images: product.image,
+//       }
+//     }
+//   }
 
 export default async function page(params:paragramType) {
     const id = params.params.id;

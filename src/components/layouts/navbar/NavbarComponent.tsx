@@ -25,7 +25,7 @@ export default function NavbarComponent() {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         {
           navbarItems.map((item,index)=>(
-            <NavbarItem>
+            <NavbarItem key={index}>
             <Link
             key={index}
             color="foreground"

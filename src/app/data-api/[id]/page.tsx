@@ -33,7 +33,7 @@ export default async function page(params:paragramType) {
 
         <div> 
         
-            <h1>{id}{get.title}</h1>
+            <h1>{id}</h1>
         </div>
 
     </div>

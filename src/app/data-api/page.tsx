@@ -1,44 +1,50 @@
-"use client"
+
 import CardComponent from '@/components/cards/CardComponent';
 import { ProductType } from '@/types/product';
-import {useRouter } from 'next/router';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-
-export default function page(){
-  const router = useRouter();
-  const [data,setData] = useState([]); 
+import { Metadata } from 'next';
 
 
-  async function fetchDataApi(){
-    const getDataApi = await fetch("https://fakestoreapi.com/products");
-    const res = await getDataApi.json();
-    setData(res.data);
-  }
-  useEffect(() => {
-    fetchDataApi();
-  },[])
+export const metadata: Metadata = {
+  title: "Data-API",
+  description: "This is Data API description ",
+  keywords: ["shop", "ecommerce", "sell"]
+}
 
+
+async function fetchDataApi(){
+  const getDataApi = await fetch("https://fakestoreapi.com/products");
+  const res = await getDataApi.json();
+  return res;
+}
+
+
+
+async function dataAPI(){
+  const data_api = await fetchDataApi();
   
   return (
     <>
-     return(
+     {/* return( */}
       <div className='mt-10 flex justify-center flex-wrap gap-5'>
       <h1 className="font-bold text-large">Data api </h1>
       {
-        data?.map((pro: ProductType) => {
+        data_api?.map((pro: ProductType) => {
           return(
-            <div onClick={()=>router.push(`/product/${pro.id}`) } key={pro.id}>
+            <Link href={`/data-api/${pro.id}`} key={pro.id}>
                 <CardComponent
                 thumbnail={pro.image}
                 title={pro.title}
                 key={pro.id}
                 />
-            </div> 
+            </Link> 
           )})
         }
     </div>
-     )
+     {/* ) */}
     </>
 
   )
 }
+export default dataAPI

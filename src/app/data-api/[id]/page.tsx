@@ -34,7 +34,6 @@ export default async function page(params:paragramType) {
     <div>
 
         <div> 
-        
             <h1>{id}</h1>
         </div>
 

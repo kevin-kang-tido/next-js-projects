@@ -1,4 +1,4 @@
-// 'use client'
+
 import CardComponent from '@/components/cards/CardComponent'
 import Link from 'next/link'
 import React from 'react'
@@ -6,8 +6,15 @@ import { ProductType } from "@/types/product";
 import { Suspense } from "react";
 import LoadingComponent from "../loading";
 import async from './../page';
-import { useRouter } from 'next/router';
+import { Metadata } from 'next';
 
+
+
+export const metadata: Metadata = {
+  title: "Product",
+  description: "This is description shop",
+  keywords: ["shop", "ecommerce", "sell"]
+}
 
 async function fetchProduct() {
   const product = await fetch("https://fakestoreapi.com/products", {
@@ -18,7 +25,6 @@ async function fetchProduct() {
 }
 
 async function page() {
-  const router = useRouter();
   const product = await fetchProduct();
 
   return (
@@ -29,13 +35,12 @@ async function page() {
         {
         product?.map((pro: ProductType) => {
           return(
-            <div onClick={()=>router.push(`/product/${pro.id}`) } key={pro.id}>
-                <CardComponent
-                thumbnail={pro.image}
-                title={pro.title}
-                key={pro.id}
-                />
-            </div> 
+            <Link href={`/product/${pro.id}`} key={pro.id}>
+            <CardComponent
+              title={pro.title}
+              thumbnail={pro.image}
+            />
+          </Link>
           )})
         }
         </Suspense>

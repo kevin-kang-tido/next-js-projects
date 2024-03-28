@@ -17,8 +17,8 @@ export default async function Home() {
 
   return (
     <>
+     <h1 className="font-bold text-large text-center m-5">មកដឹងឲ្យច្បាស់កុំច្រឡំ ពានបាល់ទះធំៗ២ព្រឹត្តិការណ៍នេះឈ្នះ៣ឆ្នាំជាប់គ្នាទើបយកពានទៅផ្ទះបាន</h1>
       <div className="mt-10 flex justify-center flex-wrap gap-5">
-        <h1 className="font-bold text-large">Hi</h1>
         <Suspense fallback={<LoadingComponent/>} >
         {product?.map((pro: ProductType) => (
           <CardComponent

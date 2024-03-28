@@ -20,5 +20,8 @@ export const navbarItems=[
 },{
     title:"Data-API",
     path:"/data-api"
+},{
+    title:"List",
+    path:"/list"
 }
 ]

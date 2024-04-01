@@ -1,4 +1,5 @@
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
+import NavbarComponent from "@/components/layouts/navbar/NavbarComponent";
 
 export default function RootLayout({
   children,
